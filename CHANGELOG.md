@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `media_api.py existing --since-minutes` now filters on DateCreated client-side; after a full scan the
+  server-side last-saved filter returned the whole library. Found on the first real run.
+
 ## 0.1.0 (2026-11-05)
 
 First public release.

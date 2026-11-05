@@ -144,14 +144,23 @@ def cmd_add_library(api, a):
 def cmd_existing(api, a):
     params = {"IncludeItemTypes": "Movie", "Recursive": "true", "Fields": "ProductionYear,Path,DateCreated",
               "SortBy": "SortName", "Limit": 5000}
-    if a.since_minutes:
-        import datetime as dt
-        since = dt.datetime.now(dt.timezone.utc) - dt.timedelta(minutes=a.since_minutes)
-        params["MinDateLastSaved"] = since.strftime("%Y-%m-%dT%H:%M:%SZ")
     r = api.call("GET", "/Items", params=params)
     items = r.get("Items", [])
+    if a.since_minutes:
+        # Filter on DateCreated client-side: a full library scan bumps DateLastSaved on every
+        # item, so the server-side MinDateLastSaved filter returns the whole library after a refresh.
+        import datetime as dt
+        since = dt.datetime.now(dt.timezone.utc) - dt.timedelta(minutes=a.since_minutes)
+        def created(i):
+            v = (i.get("DateCreated") or "")[:19]
+            try:
+                return dt.datetime.fromisoformat(v).replace(tzinfo=dt.timezone.utc)
+            except ValueError:
+                return dt.datetime.min.replace(tzinfo=dt.timezone.utc)
+        items = [i for i in items if created(i) >= since]
     if a.json:
-        print(json.dumps([{"Name": i.get("Name"), "Year": i.get("ProductionYear"), "Path": i.get("Path")} for i in items], indent=1))
+        print(json.dumps([{"Name": i.get("Name"), "Year": i.get("ProductionYear"), "Path": i.get("Path"),
+                           "DateCreated": i.get("DateCreated")} for i in items], indent=1))
     else:
         for i in items:
             y = i.get("ProductionYear")
