@@ -1,0 +1,51 @@
+{
+  "_comment": "Lives at ${MOVIE_LIBRARIAN_HOME:-~/.config/movie-librarian}/profile.json, mode 600. Keys starting with _ are documentation and ignored.",
+  "version": 1,
+  "server": {
+    "_types": "jellyfin | emby | plex | kodi | folder",
+    "type": "jellyfin",
+    "url": "http://localhost:8096",
+    "api_key": "paste-or-let-media_api.py-create-key-fill-this",
+    "_plex": "for plex, api_key holds the X-Plex-Token and plex_section_id the Movies section key",
+    "plex_section_id": null,
+    "_ssh_host": "ssh alias or user@host when the server is on another machine; null when local",
+    "ssh_host": null
+  },
+  "library": {
+    "_movies_path": "path as seen by the machine that runs the download (host path, not the container path)",
+    "movies_path": "/home/you/media/movies",
+    "container_path": "/media/movies",
+    "remote": false
+  },
+  "taste": {
+    "summary": "Film noir and 1950s sci-fi, likes Hitchcock and Fritz Lang; subtitles not required; no silent films.",
+    "loves": ["Double Indemnity", "The Thing from Another World", "Rear Window"],
+    "searches": [
+      {"name": "noir", "collections": ["Film_Noir", "feature_films"], "subjects": ["noir", "film noir"], "year_from": 1940, "year_to": 1960, "rows": 40},
+      {"name": "sci-fi", "collections": ["SciFi_Horror", "feature_films"], "subjects": ["science fiction"], "year_from": 1950, "year_to": 1965, "rows": 40},
+      {"name": "directors", "collections": ["feature_films"], "query": "creator:(Hitchcock OR Lang OR Ulmer)", "rows": 20}
+    ],
+    "avoid": ["silent", "serial", "documentary"],
+    "languages": ["en"],
+    "rules": {
+      "_doc": "mechanical part of the sanity gate; see references/sources.md",
+      "pd_year_max": 1930,
+      "trust_year_max": 1965,
+      "min_downloads": 5000,
+      "min_runtime_min": 55,
+      "min_height": 360,
+      "skip_keywords": ["trailer", "1080p", "720p", "bluray", "brrip", "web-dl", "hdrip", "x264", "x265", "yify", "dvdrip", "episode", "chapter"]
+    }
+  },
+  "run": {
+    "_mode": "manual | scheduled",
+    "mode": "scheduled",
+    "per_run": 3,
+    "max_gb_per_run": 6,
+    "schedule": "0 3 * * 0",
+    "schedule_human": "Sundays 03:00",
+    "notify": null
+  },
+  "created": "2026-11-05",
+  "created_by": "movie-librarian skill"
+}

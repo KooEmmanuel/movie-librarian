@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: shortlist-noir-existing-profile
+expected_outcome: |
+  Reads the existing profile instead of re-interviewing, searches the Internet Archive's
+  noir collections, and presents a compact shortlist of exactly 3 feature-length noir films
+  with title, year, resolution, file size and a one-line reason each. Skips anything already
+  in the library folder (e.g. His Girl Friday, The General), uses only free/public-domain
+  sources, applies the sanity gate, and downloads nothing.
+context:
+  scaffold_script: place-files.sh

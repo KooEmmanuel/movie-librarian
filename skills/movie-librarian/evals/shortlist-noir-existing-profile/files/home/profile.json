@@ -1,0 +1,101 @@
+{
+ "_comment": "Lives at ${MOVIE_LIBRARIAN_HOME:-~/.config/movie-librarian}/profile.json, mode 600. Keys starting with _ are documentation and ignored.",
+ "version": 1,
+ "server": {
+  "type": "folder",
+  "url": null,
+  "api_key": null,
+  "ssh_host": null,
+  "plex_section_id": null
+ },
+ "library": {
+  "movies_path": "./library",
+  "remote": false
+ },
+ "taste": {
+  "summary": "Film noir and classic thrillers; likes Hitchcock, Welles, Fritz Lang. Silent films are fine. No shorts under 55 min.",
+  "loves": [
+   "The Third Man",
+   "Rear Window",
+   "M"
+  ],
+  "searches": [
+   {
+    "name": "noir",
+    "collections": [
+     "Film_Noir",
+     "feature_films"
+    ],
+    "subjects": [
+     "noir",
+     "film noir"
+    ],
+    "year_from": 1940,
+    "year_to": 1960,
+    "rows": 40
+   },
+   {
+    "name": "sci-fi",
+    "collections": [
+     "SciFi_Horror",
+     "feature_films"
+    ],
+    "subjects": [
+     "science fiction"
+    ],
+    "year_from": 1950,
+    "year_to": 1965,
+    "rows": 40
+   },
+   {
+    "name": "directors",
+    "collections": [
+     "feature_films"
+    ],
+    "query": "creator:(Hitchcock OR Lang OR Ulmer)",
+    "rows": 20
+   }
+  ],
+  "avoid": [
+   "silent",
+   "serial",
+   "documentary"
+  ],
+  "languages": [
+   "en"
+  ],
+  "rules": {
+   "_doc": "mechanical part of the sanity gate; see references/sources.md",
+   "pd_year_max": 1930,
+   "trust_year_max": 1965,
+   "min_downloads": 5000,
+   "min_runtime_min": 55,
+   "min_height": 360,
+   "skip_keywords": [
+    "trailer",
+    "1080p",
+    "720p",
+    "bluray",
+    "brrip",
+    "web-dl",
+    "hdrip",
+    "x264",
+    "x265",
+    "yify",
+    "dvdrip",
+    "episode",
+    "chapter"
+   ]
+  }
+ },
+ "run": {
+  "mode": "manual",
+  "per_run": 3,
+  "max_gb_per_run": 3,
+  "schedule": null,
+  "schedule_human": null,
+  "notify": null
+ },
+ "created": "2026-11-05",
+ "created_by": "movie-librarian skill"
+}

@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.part
+*.mp4
+*.mkv
+*.ogv
+*.avi
+# eval results written by `claude plugin eval` and by the skill-creator workspace
+skills/movie-librarian/evals/results/
+*-workspace/
+# local profiles/history must never be committed (they hold API keys)
+profile.json
+!skills/movie-librarian/evals/*/files/home/profile.json
+history.jsonl
+runs.log
+cron.log
+.DS_Store

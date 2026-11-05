@@ -1,0 +1,18 @@
+# Plex Media Server. Get a claim token at https://www.plex.tv/claim (valid 4 minutes)
+# right before the first `docker compose up -d`. Remove PLEX_CLAIM after first start.
+services:
+  plex:
+    image: plexinc/pms-docker:latest       # arm64 ok; alternative: lscr.io/linuxserver/plex
+    container_name: plex
+    network_mode: host                     # Plex discovery and remote access work best this way
+    environment:
+      - TZ=America/New_York                # CHANGE_ME
+      - PLEX_CLAIM=claim-xxxxxxxxxxxx      # CHANGE_ME (first run only)
+      - PLEX_UID=1000                      # CHANGE_ME `id -u`
+      - PLEX_GID=1000                      # CHANGE_ME `id -g`
+      # - ADVERTISE_IP=http://192.168.1.50:32400/
+    volumes:
+      - ./config:/config
+      - ./transcode:/transcode
+      - /path/to/media:/data:ro            # CHANGE_ME ; Movies library path inside Plex: /data/movies
+    restart: unless-stopped

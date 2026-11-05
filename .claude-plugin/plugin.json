@@ -1,0 +1,10 @@
+{
+  "name": "movie-librarian",
+  "description": "Find legally free films (public domain, Creative Commons, open movies), download and file them for Jellyfin/Plex/Emby/Kodi, set up the server with Docker if needed, and schedule weekly pickups.",
+  "version": "0.1.0",
+  "author": { "name": "Emmanuel Nyatefe", "url": "https://github.com/KooEmmanuel" },
+  "homepage": "https://github.com/KooEmmanuel/movie-librarian",
+  "repository": "https://github.com/KooEmmanuel/movie-librarian",
+  "license": "MIT",
+  "keywords": ["jellyfin", "plex", "emby", "kodi", "public-domain", "internet-archive", "media-server", "homelab", "raspberry-pi"]
+}

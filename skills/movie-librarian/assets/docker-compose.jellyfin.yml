@@ -1,0 +1,29 @@
+# Jellyfin media server. Edit the three CHANGE_ME values, then: docker compose up -d
+# Config persists in ./config; delete the container freely, never delete ./config.
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    # Run as the user who owns the media folders: `id -u`:`id -g`
+    user: "1000:1000"                      # CHANGE_ME
+    environment:
+      - TZ=America/New_York                # CHANGE_ME
+      # Set this to the URL users will open, so links in emails/clients are right.
+      # - JELLYFIN_PublishedServerUrl=http://192.168.1.50:8096
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      # Host media root on the left, container path on the right.
+      # The Movies library inside Jellyfin should point at /media/movies.
+      - /path/to/media:/media:ro           # CHANGE_ME  (drop :ro if Jellyfin should write .nfo/artwork into it)
+    # Choose ONE of the two networking styles:
+    ports:
+      - "8096:8096"                        # web UI / API
+      # - "8920:8920"                      # HTTPS, only if you configure certs in Jellyfin
+      # - "7359:7359/udp"                  # client auto-discovery on the LAN
+      # - "1900:1900/udp"                  # DLNA
+    # network_mode: host                   # simpler on a dedicated Pi; then remove `ports:`
+    # Hardware transcoding (Intel/AMD VAAPI). Not useful on Raspberry Pi 5.
+    # devices:
+    #   - /dev/dri:/dev/dri
+    restart: unless-stopped

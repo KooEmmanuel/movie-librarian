@@ -1,0 +1,15 @@
+{
+  "name": "movie-librarian",
+  "owner": { "name": "Emmanuel Nyatefe", "url": "https://github.com/KooEmmanuel" },
+  "metadata": { "description": "Movie Librarian: a Claude Code skill that fills your Jellyfin/Plex/Emby library with legally free films." },
+  "plugins": [
+    {
+      "name": "movie-librarian",
+      "source": "./",
+      "description": "Find legally free films, download and file them for your media server, install Jellyfin with Docker if you have none, and schedule weekly pickups.",
+      "version": "0.1.0",
+      "category": "productivity",
+      "keywords": ["jellyfin", "plex", "emby", "public-domain", "internet-archive", "homelab"]
+    }
+  ]
+}

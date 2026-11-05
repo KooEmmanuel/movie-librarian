@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: download-one-named-film
+expected_outcome: |
+  Downloads the h.264 mp4 of Detour from archive.org item "Detour" into
+  "Detour (1945)/Detour (1945).mp4" under the given folder, verifies the Archive's MD5,
+  and reports title, year, resolution and size. Does not pick the .ogv or 512kb derivative.

@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: first-run-plan-no-install
+expected_outcome: |
+  Runs server detection (including stopped containers and their manager, e.g. Coolify,
+  Portainer, compose), reports what it found and the host movies path if a server exists,
+  recommends reusing an existing server over installing a new one (or recommends Jellyfin
+  via Docker if none exists), states that sources are legal/public-domain catalogs only,
+  outlines the remaining setup questions (taste, volume, schedule, how to connect) and the
+  scheduled mechanism (cron/systemd running the unattended script), and makes no system
+  changes.

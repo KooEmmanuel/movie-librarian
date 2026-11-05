@@ -1,0 +1,16 @@
+# Emby Server. On a Raspberry Pi / arm64 host use image emby/embyserver_arm64v8.
+services:
+  emby:
+    image: emby/embyserver:latest          # CHANGE_ME on arm64: emby/embyserver_arm64v8
+    container_name: emby
+    environment:
+      - UID=1000                           # CHANGE_ME
+      - GID=1000                           # CHANGE_ME
+      - TZ=America/New_York                # CHANGE_ME
+    volumes:
+      - ./config:/config
+      - /path/to/media:/media:ro           # CHANGE_ME ; Movies library path inside Emby: /media/movies
+    ports:
+      - "8096:8096"
+      # - "8920:8920"
+    restart: unless-stopped
